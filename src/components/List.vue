@@ -7,7 +7,7 @@
     <ul class="stories" v-if="!loading && !error">
       <li v-bind:key="index" v-for="(story, index) of stories" class="story">
         <p class="story__title">{{ story.title }}</p>
-        <small class="story__date">{{ new Date(story.time * 1000) }}</small>
+        <small class="story__date">{{ (story.time * 1000) | moment }}</small>
         <a :href="story.url">{{ story.url }}</a>
       </li>
     </ul>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import moment from "moment";
 import { http } from "@/services/api";
 
 export default {
@@ -56,6 +57,11 @@ export default {
     } finally {
       this.loading = false;
     }
+  },
+  filters: {
+    moment: function(date) {
+      return moment(date).format("DD/MM/YYYY, h:mm");
+    }
   }
 };
 </script>
@@ -73,8 +79,12 @@ ul {
 
 li {
   margin: 0 10px;
+  padding: 16px 0;
 }
 
+p {
+  margin: 0;
+}
 a {
   color: #42b983;
 }
