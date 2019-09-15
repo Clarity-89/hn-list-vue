@@ -49,7 +49,6 @@ export default {
       for await (let promise of getStories(ids)) {
         const response = await promise;
         const story = response.data;
-        console.log("st", story);
         this.stories = [...this.stories, story];
       }
     } catch (e) {
