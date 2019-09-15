@@ -1,4 +1,5 @@
 # hn-list-vue
+List of Hacker News stories
 
 ## Project setup
 ```
